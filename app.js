@@ -9,6 +9,9 @@ const port = process.env.EA_PORT || 8080
 
 app.use(bodyParser.json())
 
+app.get('/', (req, res) => {
+  res.send('NUSIC server is up and running')
+})
 app.post('/listeners', (req, res) => {
   console.log('POST Data: ', req.body)
   createRequest(req.body, (status, result) => {
