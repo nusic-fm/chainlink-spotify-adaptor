@@ -2,7 +2,7 @@ const { Requester } = require('@chainlink/external-adapter')
 const ChartmetricService = require('./chartmetric.service').chartmetricService
 
 const createRequest = async (input, callback) => {
-  const spotifyId = input.id
+  const spotifyId = input.data.id
   const service = new ChartmetricService()
   const ids = await service.getChartmetricArtistIds('spotify', spotifyId)
   const chartmetricId = ids[0].cm_artist
