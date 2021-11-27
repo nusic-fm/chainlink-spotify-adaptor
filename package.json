@@ -1,8 +1,8 @@
 {
-  "name": "EA-NodeJS-Template",
+  "name": "NUSIC-Chartmetric-Adaptor",
   "version": "0.1.0",
-  "author": "",
-  "description": "",
+  "author": "logesh.r24@gmail.com",
+  "description": "Responsible for fetching chartmetric ids for provided spotify id and return spotify monthly listeners for the Artist",
   "license": "MIT",
   "scripts": {
     "test": "./node_modules/.bin/_mocha --timeout 0",

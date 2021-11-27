@@ -1,8 +1,5 @@
 const axios = require('axios')
 
-// Trial API Refresh token from chartmetrics.com
-const refreshtoken = '0OVNrilX2MOJLq7fQijEfcdvv9rTnsqehxEA7PiSS8nLOqve9KHVrPDzcQnhB6SL'
-
 class ChartmetricService {
   static accessToken
   static accessTokenExpiryDate
@@ -13,7 +10,7 @@ class ChartmetricService {
       headers: {
         'Content-Type': 'application/json'
       },
-      data: { refreshtoken }
+      data: { refreshtoken: process.env.REFRESH_TOKEN }
     })
     const data = response.data
     const expiry = new Date()

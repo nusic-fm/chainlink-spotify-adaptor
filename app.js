@@ -10,8 +10,10 @@ const port = process.env.PORT || 8080
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-  res.send('NUSIC server is up and running')
+  res.send('NUSIC chartmetric service is up and running')
 })
+
+// Used for chainlink requests
 app.post('/listeners', (req, res) => {
   console.log('POST Data: ', req.body)
   createRequest(req.body, (status, result) => {
@@ -20,6 +22,7 @@ app.post('/listeners', (req, res) => {
   })
 })
 
+// Used for NUSIC music bonds client
 app.post('/ids', async (req, res) => {
   console.log('POST Data: ', req.body.id)
   const service = new ChartmetricService()
