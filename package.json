@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@chainlink/external-adapter": "^0.2.3",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0"
   },
   "devDependencies": {
     "body-parser": "^1.19.0",

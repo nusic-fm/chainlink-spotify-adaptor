@@ -1,5 +1,7 @@
 const axios = require('axios')
+require('dotenv').config()
 
+console.log(process.env.REFRESH_TOKEN)
 class ChartmetricService {
   static accessToken
   static accessTokenExpiryDate
