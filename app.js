@@ -9,12 +9,7 @@ var cors = require('cors')
 const app = express()
 const port = process.env.PORT || 8080
 
-var corsOptions = {
-  origin: 'https://nusic.fm/',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
-app.use(cors(corsOptions))
+app.use(cors())
 
 app.use(bodyParser.json())
 
@@ -41,6 +36,11 @@ app.post('/ids', async (req, res) => {
 })
 
 const REVUE_BASE_URL = 'https://www.getrevue.co/api/v2/subscribers'
+
+// var corsOptions = {
+//   origin: 'https://nusic.fm',
+//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
 
 // Used for NUSIC music bonds client
 app.post('/add_subscriber', async (req, res) => {
