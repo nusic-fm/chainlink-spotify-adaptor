@@ -1,5 +1,5 @@
 const ChartmetricService = require('./chartmetric.service').chartmetricService
-
+const axios = require('axios')
 const createRequest = require('./index').createRequest
 
 const express = require('express')
@@ -9,7 +9,12 @@ var cors = require('cors')
 const app = express()
 const port = process.env.PORT || 8080
 
-app.use(cors())
+var corsOptions = {
+  origin: 'https://nusic.fm/',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors(corsOptions))
 
 app.use(bodyParser.json())
 
@@ -33,6 +38,31 @@ app.post('/ids', async (req, res) => {
   const ids = await service.getChartmetricArtistIds('spotify', req.body.id)
   console.log({ ids })
   res.send(ids)
+})
+
+const REVUE_BASE_URL = 'https://www.getrevue.co/api/v2/subscribers'
+
+// Used for NUSIC music bonds client
+app.post('/add_subscriber', async (req, res) => {
+  const bodyFormData = new URLSearchParams()
+  bodyFormData.append('email', req.body.email)
+  bodyFormData.append('first_name', req.body.firstName)
+  bodyFormData.append('last_name', req.body.lastName)
+  const headers = {
+    Authorization: `Token ${process.env.REVUE_APIKEY}`
+  }
+  try {
+    const revueRes = await axios({
+      method: 'post',
+      url: REVUE_BASE_URL,
+      headers,
+      data: bodyFormData
+    })
+    res.send(revueRes)
+  } catch (e) {
+    const eRes = e.response || { status: 400 }
+    res.status(eRes.status).send(e)
+  }
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))

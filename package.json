@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@chainlink/external-adapter": "^0.2.3",
+    "axios": "^0.25.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0"
   },
